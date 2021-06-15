@@ -1,0 +1,50 @@
+.MenuMainContainer{
+    position:absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 100%;
+        height: 100%;
+        background-color: rgb(131, 255, 127);
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+
+}
+.capa {
+    border: 3px solid red;
+    position: absolute;
+    width: 500px;
+    height: 400px;
+    top: 150px;
+    left: 500px;
+    background-color: azure;
+}
+
+.oblique {
+    font-style: oblique;
+    color: rgb(54, 11, 211);
+    border-radius: "5%";
+  }
+.posicion{
+    top: 500px;
+    left: 100px;
+    background-color: rgb(131, 255, 127);
+}
+.MenuBtns{
+    position: relative;
+    top:450px;
+    text-align: center;
+    padding: 1%;
+    margin-left: 3px;
+    background-color: rgba(46, 33, 236, 0.6);
+}
+.btnStart{
+    position: relative;
+    background-color: rgb(58, 131, 240);
+    top:450px;
+    color: white;
+    margin:4px ;
+    border-radius: 7px;
+    padding: 5px;
+}  
