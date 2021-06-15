@@ -33,19 +33,19 @@ class MenuP extends Component {
         <form className="capa" >
 
           <h4> Modificar datos Personales </h4>
-          
-            <Button  variant="btn btn-success"onClick={() => this.ir_datapersonal()}> Modificar_DP </Button>
-         
+
+          <Button variant="btn btn-success" onClick={() => this.ir_datapersonal()}> Modificar_DP </Button>
+
 
           <h4> Cambiar Clave  </h4>
-          
-            <Button  variant="btn btn-success" onClick={() => this.ir_cambiarClave()}> Cambiar_clave </Button>
-        
+
+          <Button variant="btn btn-success" onClick={() => this.ir_cambiarClave()}> Cambiar_clave </Button>
+
 
           <h4> Historial de Productos </h4>
-          
-            <Button  variant="btn btn-success" onClick={() => this.ir_historial()}> Historial </Button>
-        
+
+          <Button variant="btn btn-success" onClick={() => this.ir_historial()}> Historial </Button>
+
 
         </form>
 

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import '../Styles/DataPersonal_style.css';
 import { updateUser,getUserCollections } from './consultas'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class DataPersonal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            usuario: 'diazr',
+            usuario: cookies.get('username'),
             nombre: '',
             apellido: '',
             telefono: '',
@@ -29,6 +31,7 @@ class DataPersonal extends Component {
     }
 
     async componentDidMount() {
+        
         const data = await getUserCollections(this.state.usuario);
         console.log(data)
         this.setState({ nombre: data.name , 
@@ -40,8 +43,6 @@ class DataPersonal extends Component {
 
     update = async () => {
         const c = this.state;
-        console.log(c);
-        console.log("........")
         const updated = await updateUser(c.usuario, c.nombre, c.apellido, c.telefono, c.direccion, c.biografia);
         if (updated) {
             alert("Datos actualizados!");
@@ -55,7 +56,7 @@ class DataPersonal extends Component {
                 <h1 className="oblique"> Modificar Datos Personales</h1>
                 <form>
                     <h4> Usuario:  </h4>
-                    <input type="text" name="usuario" placeholder='Ingresar usuario' 
+                    <input type="text" name="usuario" placeholder='Ingresar usuario' value={this.state.usuario }
                         onChange={this.handleChange} style={{ width: "370px" }} required />
                 </form>
 

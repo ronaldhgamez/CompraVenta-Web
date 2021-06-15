@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import { validateUser } from './consultas'
 
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -20,21 +23,22 @@ class Login extends Component {
         )
         console.log(this.state)
     }
-    
-   checkTextInput = async () => {
-       
-       if (!this.state.usuario.trim()) {
-           return;
-       }
-       if (!this.state.contrasena.trim()) {
-           return;
-       }
-       
-      this.logeo();
-   };
-   
-   //redirigir a la pagina Menu
+
+    checkTextInput = async () => {
+
+        if (!this.state.usuario.trim()) {
+            return;
+        }
+        if (!this.state.contrasena.trim()) {
+            return;
+        }
+
+        this.logeo();
+    };
+
+    //redirigir a la pagina Menu
     ir_Menu = async () => {
+        cookies.set('username', this.state.usuario, { path: '/' });
         window.location.href = "./MenuP";
     }
 
@@ -42,11 +46,11 @@ class Login extends Component {
     logeo = async () => {
         const d = this.state;
         const res = await validateUser(d.usuario, d.contrasena);
-        console.log(res + ": login");
-        if(res){ //si true
+        
+        if (res) { //si true
             this.ir_Menu();
-        }else{
-            alert('No valido el Ingreso')
+        } else {
+            alert('El usuario o contraseña son incorrectos!')
         }
     }
 
@@ -70,12 +74,8 @@ class Login extends Component {
                     <br />
                     <br />
 
-                   
-                    <Button onClick={() => this.logeo()}> Ingresar </Button>
-                    
 
-                    <br />
-                    <Button onClick={() => this.ir_Menu()}> ir </Button>
+                    <Button onClick={() => this.logeo()}> Ingresar </Button>
                 </form>
             </div>
         );

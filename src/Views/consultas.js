@@ -1,8 +1,8 @@
-const baseURL = "http://localhost:4000";
+const baseURL = "https://compra-venta-backend-nodejs.herokuapp.com";
 
 
 const updateUser = async (usuario, name, lastname, tel, exactAddress, biography) => {
-    const url = baseURL+'/api/updateUserData';
+    const url = baseURL +'/api/updateUserData';
     const body = {
         user: usuario,
         name: name,
@@ -25,7 +25,7 @@ const updateUser = async (usuario, name, lastname, tel, exactAddress, biography)
 
 
 const updatePassw = async (user, pass) => {
-    const url = '/api/updatePassw';
+    const url = baseURL + '/api/updatePassw';
     const body = {
         user: user,
         pass: pass
@@ -62,7 +62,6 @@ const validateUser = async (user, pass) => {
 }
 
 const getUserCollections = async (user) => {
-    console.log('entra')
     const url = baseURL + '/api/getUserCollections';
     const body = { user: user};
     try {
@@ -82,54 +81,41 @@ const getUserCollections = async (user) => {
     }
 }
 
+const getUserNotifications = async (user) => {
 
-const getAllProducts = async (user) => {
-    const url = baseURL + '/api/getAllProducts';
-    const body = { user: user};
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        });
-        let json = await response.json(); // json={ valido: <true|false> }
-        return json;
-    } catch (error) {
-        console.log(error);
-        return false;
-    }
+    const url = `${baseURL}/api/getUserNotifications`;
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ "user": user })
+    });
+    return await response.json();
 }
 
-const getUserProducts = async (user) => {
-    console.log('entra')
-    const url = baseURL + '/api/getUserProducts';
-    const body = { user: user};
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        });
-        let json = await response.json(); // json={ valido: <true|false> }
-        return json;
-    } catch (error) {
-        console.log(error);
-        return false;
-    }
-}
+const getProductCollection = async (id) => {
 
+    const url = `${baseURL}/api/getProductCollection`;
+    const body = { "id": id };
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+    return await response.json();
+}
 
 export {
     updateUser,
     updatePassw,
     validateUser,
     getUserCollections,
-    getAllProducts,
-    getUserProducts
+    getUserNotifications,
+    getProductCollection
 }
